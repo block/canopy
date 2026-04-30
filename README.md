@@ -1,36 +1,62 @@
-# canopy README
+# Git Visualizer
 
-Congrats, project leads! You got a new project to grow!
+  <img width="1678" height="1080" alt="git-viz-screenshot" src="https://github.com/user-attachments/assets/a0ef1dbb-85ed-4544-ba58-3513a7d3f6d9" />
+  <img width="1678" height="1080" alt="git-viz-screenshot-2" src="https://github.com/user-attachments/assets/505d305c-be0f-424f-8bb6-78e14e6a87df" />
+  <img width="1678" height="1080" alt="git-viz-screenshot-3" src="https://github.com/user-attachments/assets/26b1050d-d1bb-4005-ab45-8c6a0c3f3fcf" />
 
-This stub is meant to help you form a strong community around your work. It's yours to adapt, and may 
-diverge from this initial structure. Just keep the files seeded in this repo, and the rest is yours to evolve! 
+  A desktop app for visualizing a local git repository's branch timeline, open/merged PRs, commit
+  history, AI-powered diff summaries, and screenshot previews of any branch.
 
-## Introduction
+  Built with Tauri 2 (Rust backend) + React + Vite + Tailwind CSS.
 
-Orient users to the project here. This is a good place to start with an assumption
-that the user knows very little - so start with the Big Picture and show how this
-project fits into it.
+  ---
 
-Then maybe a dive into what this project does.
+  ## Prerequisites
 
-Diagrams and other visuals are helpful here. Perhaps code snippets showing usage.
+  - [Node.js](https://nodejs.org/) 18+
+  - [pnpm](https://pnpm.io/) (`npm install -g pnpm`)
+  - [Rust](https://www.rust-lang.org/tools/install) (stable toolchain)
+  - [Tauri CLI prerequisites](https://v2.tauri.app/start/prerequisites/) for your platform
+  - A GitHub personal access token (PAT) with `repo` scope
 
-Project leads should complete, alongside this `README`:
+  ---
 
-* [CODEOWNERS](./CODEOWNERS) - set project lead(s)
-* [CONTRIBUTING.md](./CONTRIBUTING.md) - Fill out how to: install prereqs, build, test, run, access CI, chat, discuss, file issues
-* [Bug-report.md](.github/ISSUE_TEMPLATE/bug-report.md) - Fill out `Assignees` add codeowners @names
-* [config.yml](.github/ISSUE_TEMPLATE/config.yml) - remove "(/add your discord channel..)" and replace the url with your Discord channel if applicable
+  ## Setup
 
-The other files in this template repo may be used as-is:
+  1. Clone the repo
+     ```bash
+     git clone https://github.com/cynfria/git-visualizer
+     cd git-visualizer
 
-* [GOVERNANCE.md](./GOVERNANCE.md)
-* [LICENSE](./LICENSE)
+  2. Install dependencies
+  pnpm install
+  3. Set your GitHub token
 
-## Project Resources
+  3. Create a .env file in the project root:
+  GITHUB_PAT=ghp_your_token_here
 
-| Resource                                   | Description                                                                    |
-| ------------------------------------------ | ------------------------------------------------------------------------------ |
-| [CODEOWNERS](./CODEOWNERS)                 | Outlines the project lead(s)                                                   |
-| [GOVERNANCE.md](./GOVERNANCE.md)           | Project governance                                                             |
-| [LICENSE](./LICENSE)                       | Apache License, Version 2.0                                                    |
+  ---
+  **Running the app**
+
+  pnpm tauri dev
+
+  This starts the Vite dev server and the Tauri desktop window together. The first run will compile
+   the Rust backend, which takes a few minutes.
+
+  ---
+ **Building for production**
+
+  pnpm tauri build
+
+  The compiled app bundle will be in src-tauri/target/release/bundle/.
+
+  ---
+  **What it does**
+
+  - Branch timeline — SVG canvas showing all branches, merges, and direct commits over time
+  - PR panel — open and merged pull requests fetched from GitHub, linked to branches on the map
+  - Commit history — paginated commit log per branch
+  - AI diff summaries — summarizes the diff for any branch using an LLM
+  - Screenshot previews — spins up the branch locally and captures a screenshot via headless Chrome
+
+
